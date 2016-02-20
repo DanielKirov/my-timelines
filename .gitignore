@@ -1,0 +1,4 @@
+mytimelines/db.sqlite3
+mytimelines/.idea/
+*.py[cod]
+*$py.class
