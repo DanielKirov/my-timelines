@@ -1,4 +1,5 @@
 mytimelines/db.sqlite3
 mytimelines/.idea/
+.idea/workspace.xml
 *.py[cod]
 *$py.class
