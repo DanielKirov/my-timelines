@@ -26,6 +26,8 @@ urlpatterns = [
     url(r'^test/', testview, name="test"),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^timelines/(?P<slug>[\w-]+)/$', timelineview,
+                           name="timeline-detail"),
     url(r'^', homeview, name="home")
 ]
 
