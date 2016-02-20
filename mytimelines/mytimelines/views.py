@@ -7,11 +7,11 @@ from .models import Timeline
 
 @login_required
 def timelineview(request, slug):
-    timeline = get_object_or_404(id=slug, user=request.user)
+    timeline = get_object_or_404(Timeline, id=slug, user=request.user)
     context = {
         'timeline': timeline,
     }
-    return render(request, "timeline.html", context)
+    return render(request, "timeline/detail.html", context)
 
 
 
