@@ -30,6 +30,8 @@ urlpatterns = [
     url(r'^timelines/$', login_required(TimelineListView.as_view()), name="timeline-list"),
     url(r'^timelines/(?P<slug>[\w-]+)/$', timelineview,
                            name="timeline-detail"),
+    url(r'^timelines/(?P<slug>[\w-]+)/(?P<event_slug>[\w-]+)/$', eventview,
+                           name="event-detail"),
     url(r'^', homeview, name="home")
 ]
 

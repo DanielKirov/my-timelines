@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.views.generic.list import ListView
 
-from .models import Timeline
+from .models import Timeline, Event
 
 class TimelineListView(ListView):
 
@@ -14,11 +14,23 @@ class TimelineListView(ListView):
         return Timeline.objects.filter(user=self.request.user)
 
 
+@login_required()
+def eventview(request, slug, event_slug):
+    timeline = get_object_or_404(Timeline, id=slug, user=request.user)
+    event = get_object_or_404(Event, id=event_slug, timeline=timeline)
+    context = {
+        'event': event,
+    }
+    return render(request, "event/detail.html", context)
+
+
 @login_required
 def timelineview(request, slug):
     timeline = get_object_or_404(Timeline, id=slug, user=request.user)
+    events = Event.objects.filter(timeline=timeline)
     context = {
         'timeline': timeline,
+        'events': events,
     }
     return render(request, "timeline/detail.html", context)
 
