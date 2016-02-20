@@ -15,7 +15,8 @@
                     <h4 class="modal-title">Add timeline</h4>
                 </div>
                 <div class="modal-body">
-                    <form role="form" method="POST">
+                    <form role="form" method="POST" action=".">
+                        {% csrf_token %}
                         <div class="form-group">
                             <label for="name">Name: </label>
                             <input type="email" class="form-control"
@@ -33,14 +34,10 @@
                                 <input id="my-file-selector" type="file" style="display:none;">Upload
                             </label>
                         </div>
-
-
+                        <input type="submit" class="btn btn-lg btn-primary" value="Submit">
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Add Timeline</button>
-                </div>
+
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
