@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mytimelines',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -106,3 +107,6 @@ STATIC_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'assets/static'))
 STATICFILES_DIRS = (
         os.path.normpath(os.path.join(BASE_DIR, 'static')),
 )
+
+MEDIA_ROOT = os.path.normpath(os.path.join(BASE_DIR, 'assets/media'))
+MEDIA_URL = '/media/'
