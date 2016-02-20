@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    {%  load static %}
     <img src="{% static "img/test.jpg" %}" alt="My image"/>
     <form method="post" action=".">
     {% csrf_token %}
