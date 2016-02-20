@@ -15,9 +15,10 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
-from .views import homeview
+from .views import *
 
 urlpatterns = [
+    url(r'^test/', testview, name="test"),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^', homeview, name="home")
