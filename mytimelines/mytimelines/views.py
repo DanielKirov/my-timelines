@@ -42,3 +42,15 @@ def addTimeline(request):
         user = request.user
         Timeline.objects.create(user=user,title=name,color=color,icon=file)
     return render(request, 'test.html')
+
+def addEvent(request):
+    import pdb; pdb.set_trace()
+    if request.method == "POST":
+        timeline = models.ForeignKey(Timeline, related_name="events")
+        title = models.CharField(max_length=200, null=False, blank=False)
+        description = models.CharField(max_length=500, default="")
+        date = models.DateField()
+        main_image = models.ImageField(upload_to="events")
+        return render(request, 'test.html')
+    else:
+        return render()
