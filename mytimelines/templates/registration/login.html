@@ -2,15 +2,40 @@
 {% load i18n %}
 
 {% block content %}
-<form method="post" action=".">
-  {% csrf_token %} 
-  {{ form.username }}
-  {{ form.password }}
 
-  <input type="submit" value="{% trans 'Log in' %}" />
-  <input type="hidden" name="next" value="/" />
-</form>
-
-<p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!</p>
-<p>{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p>
-{% endblock %}
+<div class="container">
+    <div class="row container">
+       <div class="row container">
+        <div class="col-sm-12">
+            <div class="form_container" style="width:25vw; margin:0 auto;">
+             <form method="post" action=".">
+                      {% csrf_token %}
+        
+                    <div class="login-form">
+                    <div class="form-group">
+                      {{ form.username }}
+                      <label class="login-field-icon fui-user" for="login-name"></label>
+                    </div>
+        
+                    <div class="form-group">
+                    {{ form.password }}
+                
+                      <label class="login-field-icon fui-lock" for="login-pass"></label>
+                    </div>
+        
+                    <div class="loginButtonContainer">
+                        <a class="btn btn-primary btn-lg btn-block" href="#">Log in</a>
+                    </div>
+                    <a class="login-link" href="{% url 'auth_password_reset' %}">Lost your password?</a>
+                    <a class="login-link" href="{% url 'registration_register' %}">Register Here</a>
+                  </div>
+                
+                  <input type="hidden" name="next" value="/" />
+            </form>
+            {% endblock %}
+                        
+           </div>
+         </div>
+      </div>
+    </div>
+</div>
