@@ -5,7 +5,6 @@ from django.views.generic.list import ListView
 
 from .models import Timeline
 
-@login_required
 class TimelineListView(ListView):
 
     model = Timeline
