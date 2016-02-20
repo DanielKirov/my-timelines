@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <ul>
+    {% for timeline in object_list %}
+        <li>
+        <img width="128" height="128" src="{{ timeline.icon.url }}"/> <a href="{{ timeline.pk }}/">{{ timeline.title }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}

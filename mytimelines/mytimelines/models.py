@@ -8,7 +8,8 @@ class Timeline(models.Model):
     icon = models.ImageField(upload_to="icons")
     color = models.CharField(max_length=20,default="")
 
-
+    def __unicode__(self):
+        return self.title
 
 class Event(models.Model):
 
