@@ -9,6 +9,11 @@ def createName(imagename):
 # take a Image.open(X) type of apraameter as an image and a name
 # generates a thumbnail 128x128 based on global var
 # named name_thumbnail.png
+
+# EXAMPLE USAGE:
+# django_image = Timeline.objects.get(id=1).icon
+# pillow_image = Image.open(django_image)
+# thumblyFy(pillow_image, django_image.url)
 def thumblyFy(im, imagename):
 	mask = Image.new('L', size, 0)
 	draw = ImageDraw.Draw(mask) 
@@ -16,4 +21,4 @@ def thumblyFy(im, imagename):
 	output = ImageOps.fit(im, mask.size, centering=(0.5, 0.5))
 	output.putalpha(mask)
 	output = output.filter(ImageFilter.SHARPEN)
-	output.save(createName(imagename)+'_thumbnail.png')
+	output.save('assets/' + createName(imagename) + '_thumbnail.png')
