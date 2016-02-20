@@ -1,5 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
+from utilities.picofyer import thumblyFy, createName
+from PIL import Image
+from django.core.files.storage import default_storage
+
 
 class Timeline(models.Model):
 
@@ -10,6 +14,12 @@ class Timeline(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def oval_icon(self):
+        django_image = self.icon
+        pillow_image = Image.open(django_image)
+        thumblyFy(pillow_image, django_image.url)
+        return createName(django_image.url) + '_thumbnail.png'
 
 class Event(models.Model):
 
