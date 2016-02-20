@@ -8,8 +8,4 @@ def homeview(request):
         return HttpResponseRedirect('/accounts/login/')
 
 def testview(request):
-    if request.user.is_authenticated():
-        return render(request, 'test.html')
-    else:
-        return HttpResponseRedirect('/accounts/login/')
-
+    return render(request, 'test.html')
