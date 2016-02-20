@@ -8,7 +8,7 @@
        <div class="row container">
         <div class="col-sm-12">
             <div class="form_container" style="width:25vw; margin:0 auto;">
-             <form method="post" action=".">
+             <form method="post" action="." id="login-form">
                       {% csrf_token %}
 
                     <div class="login-form">
@@ -24,7 +24,7 @@
                     </div>
 
                     <div class="loginButtonContainer">
-                        <a class="btn btn-primary btn-lg btn-block" href="form.submit();">Log in</a>
+                        <a class="btn btn-primary btn-lg btn-block" href="#" onclick="document.getElementById('login-form').submit();">Log in</a>
                     </div>
                     <a class="login-link" >Lost your password?</a>
                     <a class="login-link" href="{% url 'registration_register' %}">Register Here</a>
