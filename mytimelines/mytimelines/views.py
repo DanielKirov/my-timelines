@@ -10,5 +10,5 @@ def homeview(request):
         return HttpResponseRedirect('/accounts/login/')
 
 def testview(request):
-    import pdb; pdb.set_trace()
+    #import pdb; pdb.set_trace()
     return render(request, 'test.html')
