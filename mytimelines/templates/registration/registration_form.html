@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <img src="{% static "img/test.jpg" %}" alt="My image"/>
     <form method="post" action=".">
     {% csrf_token %}
     {{ form.non_field_errors }}
@@ -11,6 +12,6 @@
         {{ field }}
     </div>
     {% endfor %}
-    <input type="submit" value="Register">
+    <input type="submit" class="btn btn-lg btn-primary" value="Register">
 </form>
 {% endblock %}
