@@ -1,9 +1,11 @@
 div.timeline-frame {
     -moz-box-sizing: border-box;
-    border: 1px solid #bebebe;
+    border: 5px solid #bebebe;
+    border-color: #0d1015;
     box-sizing: border-box;
     overflow: hidden;
     position: relative;
+    background-color: #293140;
 }
 
 div.timeline-content {
@@ -27,15 +29,15 @@ div.timeline-axis-grid {
 }
 
 div.timeline-axis-grid-minor {
-    border-color: #e5e5e5;
+    border-color: #7e838c;
 }
 
 div.timeline-axis-grid-major {
-    border-color: #bfbfbf;
+    border-color: #7e838c;
 }
 
 div.timeline-axis-text {
-    color: #4d4d4d;
+    color: #fff3ea;
     padding: 3px;
     white-space: nowrap;
 }
@@ -139,7 +141,7 @@ div.timeline-groups-text {
 
 div.timeline-currenttime {
     -moz-box-sizing: border-box;
-    background-color: #ff7f6e;
+    background-color: #ab3f3f;
     box-sizing: border-box;
     width: 2px;
 }
