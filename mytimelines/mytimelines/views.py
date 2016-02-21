@@ -46,6 +46,7 @@ def timelineview(request, slug):
     context = {
         'timeline': timeline,
         'events': events,
+        'view': 'timeline',
     }
     return render(request, "timeline/detail.html", context)
 
@@ -53,7 +54,7 @@ def timelineview(request, slug):
 
 def homeview(request):
     if request.user.is_authenticated():
-        return render(request, 'home.html', {"timelines": get_timelines(request.user)})
+        return render(request, 'home.html', {"timelines": get_timelines(request.user), "view":"home"})
     else:
         return HttpResponseRedirect('/accounts/login/')
 

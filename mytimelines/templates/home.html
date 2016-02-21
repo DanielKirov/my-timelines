@@ -1,25 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <nav class="navbar navbar-inverse" role="navigation">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
-                <span class="sr-only">Toggle navigation</span>
-            </button>
-            <a class="navbar-brand" href="#">
-                {%  load static %}
-            <img id="logo-small-img" src="{% static "img/logo-small.png"%}" alt="Mountain View"">
-            </a>
-        </div>
-        <div class="collapse navbar-collapse" id="navbar-collapse-01">
-            <ul class="nav navbar-nav">
-                <li class="active"><a id="nav-link" href="#fakelink">My Timelines</a></li>
-            </ul>
-            <p  id="sign-in" class="navbar-text navbar-right ">Signed in as <a class="navbar-link" href="#">{{ user.get_username }}</a></p>
-            <button class="btn btn-default navbar-btn navbar-right lar-nav" type="button" data-toggle="modal" data-target="#addTimeline"><span class="fui-plus"></span>  Add Timeline</button>
-        </div><!-- /.navbar-collapse -->
-    </nav><!-- /navbar -->
-
     <!-- content -->
     <div class="content">
         <div class="timeline-list">

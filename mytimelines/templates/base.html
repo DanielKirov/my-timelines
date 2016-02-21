@@ -21,6 +21,37 @@
     <script src="/static/customJS/timelinecall.js"></script>
     <script src="http://www.google.com/jsapi"></script>
     <script>google.load("visualization", "1");</script>
+
+
+        <nav class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                <span class="sr-only">Toggle navigation</span>
+            </button>
+            <a class="navbar-brand" href="#">
+                {%  load static %}
+            <img id="logo-small-img" src="{% static "img/logo-small.png"%}" alt="Mountain View"">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse-01">
+            {% if view and view == "home" %}
+                <ul class="nav navbar-nav">
+                    <li class="active"><a id="nav-link" href="#fakelink">My Timelines</a></li>
+                </ul>
+            {% endif %}
+
+            {% if view and view == "home" or view == "timeline" %}
+                <p  id="sign-in" class="navbar-text navbar-right ">Signed in as <a class="navbar-link" href="#">{{ user.get_username }}</a></p>
+            {% endif %}
+
+            {% if view and view == "home" %}
+                <button class="btn btn-default navbar-btn navbar-right lar-nav" type="button" data-toggle="modal" data-target="#addTimeline"><span class="fui-plus"></span>  Add Timeline</button>
+            {% elif view and view == "timeline" %}
+                <button class="btn btn-default navbar-btn navbar-right lar-nav" type="button" data-toggle="modal" data-target="#addEvent"><span class="fui-plus"></span>  Add Event</button>
+            {% endif %}
+        </div><!-- /.navbar-collapse -->
+        </nav><!-- /navbar -->
+
     {% block content %}
     {% endblock %}
 </body>
