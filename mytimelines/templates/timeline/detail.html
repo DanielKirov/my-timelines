@@ -2,13 +2,7 @@
 
 {% block content %}
     <h1>{{ timeline.title }}</h1>
-    <img src="{{ timeline.icon.url }}"/>
-
-    <script type="text/javascript">
-        $.get("/timelines/1/", function(data){
-            drawVisualization(data, 'timeline')
-        });
-    </script>
+    <img src="{{ timeline.icon.url }}" onload="makeAJAXcall()"/>
 
     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addEvent"> Add Event </button>
     <div id="timeline"></div>

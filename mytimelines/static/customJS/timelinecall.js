@@ -25,9 +25,19 @@ function initDataSet() {
     return data
 }
 
+function makeAJAXcall(){
+    console.log(document.URL);
+    var id = document.URL.split("/")[4];
+    $.get("/timelines/"+id+"/", function(data){
+        console.log(data);
+        drawTimeline(data, 'timeline');
+        alert(data)
+    });
+}
+
 // draw the thing!
-function drawVisualization(json, divTarget) {
-    object = JSON.parse(json)
+function drawTimeline(json, divTarget) {
+    object = json;
 
     data = initDataSet();
     options = initOptions(object.Timeline[0].Event.Time.Date, object.Timeline[object.Timeline.length - 1].Event.Time.Date);
@@ -36,7 +46,7 @@ function drawVisualization(json, divTarget) {
 
     var timeline = new links.Timeline(document.getElementById(divTarget));
     timeline.setOptions(options);
-    timeline.draw(data)
+    timeline.draw(data);
 }
 
 function generateRow(obj) {
