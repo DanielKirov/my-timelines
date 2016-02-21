@@ -28,7 +28,7 @@ function initDataSet() {
 
 function makeAJAXcall(){
     var id = document.URL.split("/")[4];
-    $.get("/timelines/"+id+"/", function(data) {
+    $.get("/timelines/"+id+"/?"+Math.random(), function(data) {
         console.log(data);
         if (data.Timeline.length > 0) {
             drawTimeline(data, 'timeline');
