@@ -1,18 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {%  load static %}
-    <img src="{% static "img/test.jpg" %}" alt="My image"/>
-    <form method="post" action=".">
-    {% csrf_token %}
-    {{ form.non_field_errors }}
-    {% for field in form %}
-    <div class="fieldWrapper">
-        {{ field.errors }}
-        {{ field.label_tag }}
-        {{ field }}
+<div class="container">
+    <div class="row container">
+        <div class="row container" id="logo">
+            {% load static %}
+            <img id="logo-img" src="{% static " img/logo.jpeg "%}" ">
+        </div>
+        <div class="row container">
+            <div class="col-sm-12">
+                <div class="form_container" style="width:25vw; margin:0 auto;">
+                    <form method="post" action=".">
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+                        {% for field in form %}
+                        <div class="fieldWrapper">
+                            {{ field.errors }}
+                            {{ field.label_tag }}
+                            {{ field }}
+                        </div>
+                        {% endfor %}
+                        <input type="submit" class="btn btn-lg btn-primary" value="Register">
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    {% endfor %}
-    <input type="submit" class="btn btn-lg btn-primary" value="Register">
-    </form>
+</div>
 {% endblock %}
