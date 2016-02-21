@@ -16,9 +16,19 @@ def createName(imageName):
 # django_image = Timeline.objects.get(id=1).icon
 # pillow_image = Image.open(django_image)
 # thumblyFy(pillow_image, django_image.url)
-def thumblyFy(im, imagename):
+def thumblyFyWithSharp(im, imagename):
 	mask = Image.new('L', size, 0)
 	draw = ImageDraw.Draw(mask) 
+	draw.ellipse((0, 0) + size, fill=255)
+	output = ImageOps.fit(im, mask.size, centering=(0.5, 0.5))
+	output.putalpha(mask)
+	output = output.filter(ImageFilter.SHARPEN)
+	output.save('assets/' + createName(imagename) + '_thumbnail.png')
+
+
+def thumblyFy(im, imagename):
+	mask = Image.new('L', size, 0)
+	draw = ImageDraw.Draw(mask)
 	draw.ellipse((0, 0) + size, fill=255)
 	output = ImageOps.fit(im, mask.size, centering=(0.5, 0.5))
 	output.putalpha(mask)
