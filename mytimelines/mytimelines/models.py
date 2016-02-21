@@ -3,8 +3,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from utilities.picofyer import thumblyFy, createName
 from PIL import Image
-from django.core.files.storage import default_storage
-
+import datetime
 
 class Timeline(models.Model):
 
@@ -31,8 +30,9 @@ class Event(models.Model):
     title = models.CharField(max_length=200, null=False, blank=False)
     description = models.CharField(max_length=500,default="")
     date = models.DateField()
-    time = models.TimeField(default="")
+    time = models.TimeField(blank=True,default=datetime.time(0,0))
     main_image = models.ImageField(upload_to="events")
+
 
     def __unicode__(self):
         return self.title

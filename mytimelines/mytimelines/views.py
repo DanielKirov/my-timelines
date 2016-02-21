@@ -56,17 +56,19 @@ def addTimeline(request):
     return render(request, 'test.html')
 
 def addEvent(request):
-    #import pdb; pdb.set_trace()
-    timeline = long(request.POST['id'])
+    timeline = Timeline.objects.get(pk=long(request.POST['id']))
     if request.method == "POST":
         title = request.POST['title']
         description = request.POST['description']
         date = request.POST['date']
+        time = datetime.time(0,0)
+        if request.POST['time']:
+            time=request.POST['time']
         pic = None
         if "pics" in request.FILES:
-            pic = request.FILES['pics'][0]
-        event = Event.objects.create(title=title,description=description,date=date,main_image=pic)
-        for pic in request.FILES['pics']:
+            pic = request.FILES['pics']
+        event = Event.objects.create(timeline=timeline,title=title,description=description,time=time,date=date,main_image=pic)
+        for pic in request.FILES.getlist('pics'):
             EventPicture.objects.create(event=event,image=pic)
 
 
