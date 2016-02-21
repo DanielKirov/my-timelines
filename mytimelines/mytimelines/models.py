@@ -26,7 +26,7 @@ class Timeline(models.Model):
 
     def get_time_since_last_event(self):
         try:
-            last_event_date = self.events.order_by('date')[0].date
+            last_event_date = self.events.order_by('-date')[0].date
         except:
             return ''
 
@@ -122,6 +122,6 @@ class Event(models.Model):
 
 class EventPicture(models.Model):
 
-    event = models.ForeignKey(Event)
+    event = models.ForeignKey(Event, related_name="pictures")
     image = models.ImageField(upload_to="events")
 

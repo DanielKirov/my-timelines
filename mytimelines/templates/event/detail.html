@@ -2,5 +2,9 @@
 
 {% block content %}
     <h1>{{ event.title }}</h1>
-    <h2>{{ event.date }}</h2>
+    <h3>{{ event.date }}</h3>
+    <p>{{ event.description }}</p>
+    {% for pic in event.pictures.all %}
+        <img src="{{ pic.image.url }}" width="800" height="480"/>
+    {% endfor %}
 {% endblock %}
