@@ -59,14 +59,21 @@ def addEvent(request):
     timeline = Timeline.objects.get(pk=long(request.POST['id']))
     if request.method == "POST":
         title = request.POST['title']
-        description = request.POST['description']
+
+        description=None
+        if request.POST['description']:
+            description = request.POST['description']
+
         date = request.POST['date']
+
         time = datetime.time(0,0)
         if request.POST['time']:
             time=request.POST['time']
+
         pic = None
         if "pics" in request.FILES:
             pic = request.FILES['pics']
+
         event = Event.objects.create(timeline=timeline,title=title,description=description,time=time,date=date,main_image=pic)
         for pic in request.FILES.getlist('pics'):
             EventPicture.objects.create(event=event,image=pic)
