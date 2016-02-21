@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.views.generic.list import ListView
+import json
 
 from .models import *
+
 
 class TimelineListView(ListView):
 
@@ -24,10 +26,23 @@ def eventview(request, slug, event_slug):
     return render(request, "event/detail.html", context)
 
 
+def create_event_list_json(timeline, events):
+
+    result = {}
+    events = events.order_by('date')
+    result['Timeline'] = [event.get_json_format() for event in events]
+
+    return result
+
+
 @login_required
 def timelineview(request, slug):
     timeline = get_object_or_404(Timeline, id=slug, user=request.user)
     events = Event.objects.filter(timeline=timeline)
+    if request.is_ajax():
+        json_result = create_event_list_json()
+        return HttpResponse(json.dumps(json_result),
+                        content_type="application/json")
     context = {
         'timeline': timeline,
         'events': events,

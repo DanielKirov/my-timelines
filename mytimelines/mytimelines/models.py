@@ -40,6 +40,74 @@ class Event(models.Model):
     def get_absolute_url(self):
         return reverse('event-detail', kwargs={"slug": self.timeline.pk, "event_slug": self.pk})
 
+    @property
+    def main_image_binary(self):
+        try:
+            img = open(self.main_image.path, "rb")
+            data = img.read()
+            return "data:image/jpg;base64,%s" % data.encode('base64')
+
+        except IOError:
+            return self.main_image.url
+
+    def get_json_format(self):
+        '{"Event":{ \
+            "Time":{ \
+                "Date":{ \
+                    "Day": 23, \
+                    "Month": 7, \
+                    "Year": 2012 \
+                }, \
+                "TimeOfDay":{ \
+                    "Hour": 16, \
+                    "Minutes": 30, \
+                    "Seconds": 40 \
+                } \
+            }, \
+            "Data":{ \
+                "Message": "Today was a good damn day", \
+                "Name": "My Birthday", \
+                "Icon": "76924374uh2l3r7hq23bnr4pd9q78e38g2w3jinr2p" \
+            } \
+        }}'
+
+        result = {} # Main body
+        time_data = {}
+        event_data = {}
+
+
+        # TimeOfDay is optional
+        if self.time:
+            timeofday_data = dict(
+                Hour=int(self.time.hour),
+                Minutes=int(self.time.minute),
+                Seconds=int(self.time.second)
+            )
+        else:
+            timeofday_data = {}
+
+        date_data = dict(
+            Day=int(self.date.day),
+            Month=int(self.date.month),
+            Year=int(self.date.year)
+        )
+
+        time_data['Date'] = date_data
+        if timeofday_data:
+            time_data['TimeOfDay'] = timeofday_data
+
+        event_data['Time'] = time_data
+
+        data_data = dict(
+            Message=self.description,
+            Name=self.title,
+            Icon=self.main_image_binary
+        )
+
+        event_data['Data'] = data_data
+        result['Event'] = event_data
+        return result
+
 class EventPicture(models.Model):
 
     event = models.ForeignKey(Event)
