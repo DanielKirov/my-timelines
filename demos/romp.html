@@ -55,13 +55,29 @@
         timeline.draw(data, options)
       }
 
+      function generateRow(obj){
+        //[new Date(obj.Timeline[i].Event.Time.Date.Year, obj.Timeline[i].Event.Time.Date.Month-1, obj.Timeline[i].Event.Time.Date.Day), , obj.Timeline[i].Event.Data.Name + '<br><br>' + obj.Timeline[i].Event.Data.Message]
+        if(obj.Time.hasOwnProperty('TimeOfDay')){
+          if(obj.Data.hasOwnProperty('Icon')){
+            return [new Date(obj.Time.Date.Year, obj.Time.Date.Month-1, obj.Time.Date.Day, obj.Time.TimeOfDay.Hour, obj.Time.TimeOfDay.Minutes, obj.Time.TimeOfDay.Seconds), , '<img src="'+obj.Data.Icon+'" style="width:32px; height:32px;">'+obj.Data.Name + '<br><br>' + obj.Data.Message]
+          }else{
+            return [new Date(obj.Time.Date.Year, obj.Time.Date.Month-1, obj.Time.Date.Day, obj.Time.TimeOfDay.Hour, obj.Time.TimeOfDay.Minutes, obj.Time.TimeOfDay.Seconds), , obj.Data.Name + '<br><br>' + obj.Data.Message];
+          }
+        }else{
+          if(obj.Data.hasOwnProperty('Icon')){
+            return [new Date(obj.Time.Date.Year, obj.Time.Date.Month-1, obj.Time.Date.Day), , '<img src="'+obj.Data.Icon+'" style="width:32px; height:32px;">'+obj.Data.Name + '<br><br>' + obj.Data.Message]
+          }else{
+            return [new Date(obj.Time.Date.Year, obj.Time.Date.Month-1, obj.Time.Date.Day), , obj.Data.Name + '<br><br>' + obj.Data.Message];
+          }
+        }
+
+      }
+
       function populateTimeline(data, obj){
         for(i=0;i<obj.Timeline.length;i++){
           // add when we are OK with adding img-s
 
-          //data.addRow([new Date(obj.Timeline[i].Event.Time.Date.Year, obj.Timeline[i].Event.Time.Date.Month-1, obj.Timeline[i].Event.Time.Date.Day), , '<img src="'+obj.Timeline[i].Event.Data.Icon+'" style="width:32px; height:32px;">'+obj.Timeline[i].Event.Data.Name + '<br><br>' + obj.Timeline[i].Event.Data.Message]);
-
-          data.addRow([new Date(obj.Timeline[i].Event.Time.Date.Year, obj.Timeline[i].Event.Time.Date.Month-1, obj.Timeline[i].Event.Time.Date.Day), , obj.Timeline[i].Event.Data.Name + '<br><br>' + obj.Timeline[i].Event.Data.Message]);
+          data.addRow(generateRow(obj.Timeline[i].Event));
         }
         return data
       }
