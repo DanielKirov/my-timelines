@@ -40,7 +40,7 @@ def timelineview(request, slug):
     timeline = get_object_or_404(Timeline, id=slug, user=request.user)
     events = Event.objects.filter(timeline=timeline)
     if request.is_ajax():
-        json_result = create_event_list_json()
+        json_result = create_event_list_json(timeline, events)
         return HttpResponse(json.dumps(json_result),
                         content_type="application/json")
     context = {
