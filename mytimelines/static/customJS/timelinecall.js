@@ -9,6 +9,7 @@ function initOptions(start, end) {
         "width": "100%",
         "height": "auto",
         "style": "box",
+        "zoomMin": 10000,
         "min": new Date(start.Year - 1, start.Month - 1, start.Day),
         "max": new Date(end.Year + 1, end.Month - 1, end.Day)
     };
