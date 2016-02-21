@@ -13,9 +13,10 @@
         </div>
         <div class="collapse navbar-collapse" id="navbar-collapse-01">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#fakelink">My Timelines</a></li>
+                <li class="active"><a id="nav-link" href="#fakelink">My Timelines</a></li>
             </ul>
-            <button id="addButton" class="btn btn-default navbar-btn navbar-right" type="button" data-toggle="modal" data-target="#addTimeline"><span class="fui-plus"></span>  Add Timeline</button>
+            <p  id="sign-in" class="navbar-text navbar-right ">Signed in as <a class="navbar-link" href="#">{{ user.get_username }}</a></p>
+            <button class="btn btn-default navbar-btn navbar-right lar-nav" type="button" data-toggle="modal" data-target="#addTimeline"><span class="fui-plus"></span>  Add Timeline</button>
         </div><!-- /.navbar-collapse -->
     </nav><!-- /navbar -->
 

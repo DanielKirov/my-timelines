@@ -31,7 +31,17 @@
   margin: 25px 15px 25px 0;
 }
 
-#addButton {
-    height: 85px;
+.lar-nav {
+    height: 90px;
     margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#nav-link{
+    height: 90px;
+}
+
+#sign-in {
+    margin-top: 17px;
+    padding-left: 20px;
 }
