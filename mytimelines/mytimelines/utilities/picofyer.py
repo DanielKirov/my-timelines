@@ -22,5 +22,4 @@ def thumblyFy(im, imagename):
 	draw.ellipse((0, 0) + size, fill=255)
 	output = ImageOps.fit(im, mask.size, centering=(0.5, 0.5))
 	output.putalpha(mask)
-	output = output.filter(ImageFilter.SHARPEN)
 	output.save('assets/' + createName(imagename) + '_thumbnail.png')
