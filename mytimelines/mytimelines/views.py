@@ -54,6 +54,7 @@ def timelineview(request, slug):
 
 def homeview(request):
     if request.user.is_authenticated():
+        #create_general_timeline()
         return render(request, 'home.html', {"timelines": get_timelines(request.user), "view":"home"})
     else:
         return HttpResponseRedirect('/accounts/login/')
@@ -64,10 +65,16 @@ def testview(request):
 
 def addTimeline(request):
     if request.method == 'POST':
-        file = request.FILES['pic']
         name = request.POST['name']
-        color = request.POST['color']
         user = request.user
+
+        if "pic" in request.FILES:
+            file = request.FILES['pic']
+
+        color="Red"
+        if request.POST['color']:
+            color = request.POST['color']
+
         Timeline.objects.create(user=user,title=name,color=color,icon=file)
     return redirect('home')
 
@@ -101,3 +108,6 @@ def addEvent(request):
 
 def get_timelines(user):
     return Timeline.objects.filter(user=user)
+
+def create_general_timeline():
+    Timeline.objects.create()

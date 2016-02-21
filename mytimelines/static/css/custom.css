@@ -82,3 +82,11 @@
 .timeline-card:hover .timeline-card-text{
     color: white;
 }
+
+.timeline-details {
+    padding-left: 40px;
+}
+
+#timeline {
+    padding: 20px 20px 20px 20px;
+}

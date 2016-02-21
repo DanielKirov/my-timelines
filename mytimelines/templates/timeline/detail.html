@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{{ timeline.title }}</h1>
-    <img src="{{ timeline.icon.url }}" onload="makeAJAXcall()"/>
-
+    <div class="timeline-details"><h1> <img width="128" height="128" src="{{ timeline.oval_icon }}" onload="makeAJAXcall()" /> {{ timeline.title }}</h1></div>
     <div id="timeline"></div>
     <div class="modal fade" tabindex="-1" role="dialog" id="addEvent">
         <div class="modal-dialog">
