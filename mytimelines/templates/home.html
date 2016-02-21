@@ -14,7 +14,7 @@
                     {{ timeline.title }}
                     <p>Events: {{ timeline.events.count }}</p>
                     {% with timeline.get_time_since_last_event as last %}
-                        {% if last %}
+                        {% if last != '' %}
                             {% if last == 0 %}
                                 <p>Your last event was today.</p>
                             {% elif last == 1 %}
