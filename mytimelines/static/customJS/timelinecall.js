@@ -9,6 +9,7 @@ function initOptions(start, end) {
         "width": "100%",
         "height": "auto",
         "style": "box",
+        "zoomMin": 10000,
         "min": new Date(start.Year - 1, start.Month - 1, start.Day),
         "max": new Date(end.Year + 1, end.Month - 1, end.Day)
     };
@@ -27,9 +28,11 @@ function initDataSet() {
 
 function makeAJAXcall(){
     var id = document.URL.split("/")[4];
-    $.get("/timelines/"+id+"/", function(data){
+    $.get("/timelines/"+id+"/", function(data) {
         console.log(data);
-        drawTimeline(data, 'timeline');
+        if (data.Timeline.length > 0) {
+            drawTimeline(data, 'timeline');
+        }
     });
 }
 
