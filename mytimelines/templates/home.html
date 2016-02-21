@@ -20,8 +20,26 @@
         </div><!-- /.navbar-collapse -->
     </nav><!-- /navbar -->
 
-    <div id="test"></div>
+    <!-- content -->
+    <div class="content">
+        <div class="timeline-list">
+            {% for timeline in timelines %}
+            <div class="timeline-card" onclick="location.href='timelines/{{ timeline.pk }}/'" style="cursor: pointer;">
+                <div class="timeline-card-img">
+                    <img width="128" height="128" src="{{ timeline.oval_icon }}"/>
+                </div>
 
+                <div class="timeline-card-text">
+                    {{ timeline.title }}
+                    <p>Events: {{ timeline.events.count }}</p>
+                </div>
+
+            </div><!-- end timeline-card -->
+            {% endfor %}
+        </div><!-- end timeline-list -->
+    </div><!-- end content -->
+
+    <!-- add timeline modal -->
     <div class="modal fade" tabindex="-1" role="dialog" id="addTimeline">
         <div class="modal-dialog">
             <div class="modal-content">
