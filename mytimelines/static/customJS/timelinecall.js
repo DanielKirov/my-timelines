@@ -51,18 +51,17 @@ function generateRow(obj) {
     //[new Date(obj.Timeline[i].Event.Time.Date.Year, obj.Timeline[i].Event.Time.Date.Month-1, obj.Timeline[i].Event.Time.Date.Day), , obj.Timeline[i].Event.Data.Name + '<br><br>' + obj.Timeline[i].Event.Data.Message]
     if (obj.Time.hasOwnProperty('TimeOfDay')) {
         if (obj.Data.hasOwnProperty('Icon')) {
-            return [new Date(obj.Time.Date.Year, obj.Time.Date.Month - 1, obj.Time.Date.Day, obj.Time.TimeOfDay.Hour, obj.Time.TimeOfDay.Minutes, obj.Time.TimeOfDay.Seconds), , '<img src="' + obj.Data.Icon + '" style="width:32px; height:32px;">' + obj.Data.Name + '<br><br>' + obj.Data.Message]
+            return [new Date(obj.Time.Date.Year, obj.Time.Date.Month - 1, obj.Time.Date.Day, obj.Time.TimeOfDay.Hour, obj.Time.TimeOfDay.Minutes, obj.Time.TimeOfDay.Seconds), , '<img src="' + obj.Data.Icon + '" style="width:32px; height:32px;">' + obj.Data.Name + '<br><br>' + obj.Data.Message + '<br>' + '<a href='+obj.Data.Url+'><img src="/static/icons/Edit-50.png" style="width:28px;height:28px;margin-right:5px;"></a>' + '<a href='+obj.Data.Url+'><img src="/static/icons/Link-50.png" style="width:28px;height:28px;margin-left: 5px;;"></a>']
         } else {
-            return [new Date(obj.Time.Date.Year, obj.Time.Date.Month - 1, obj.Time.Date.Day, obj.Time.TimeOfDay.Hour, obj.Time.TimeOfDay.Minutes, obj.Time.TimeOfDay.Seconds), , obj.Data.Name + '<br><br>' + obj.Data.Message];
+            return [new Date(obj.Time.Date.Year, obj.Time.Date.Month - 1, obj.Time.Date.Day, obj.Time.TimeOfDay.Hour, obj.Time.TimeOfDay.Minutes, obj.Time.TimeOfDay.Seconds), , obj.Data.Name + '<br><br>' + obj.Data.Message + '<br>' + '<a href='+obj.Data.Url+'><img src="/static/icons/Edit-50.png" style="width:28px;height:28px;margin-right:5px;"></a>' + '<a href='+obj.Data.Url+'><img src="/static/icons/Link-50.png" style="width:28px;height:28px;margin-left: 5px;;"></a>'];
         }
     } else {
         if (obj.Data.hasOwnProperty('Icon')) {
-            return [new Date(obj.Time.Date.Year, obj.Time.Date.Month - 1, obj.Time.Date.Day), , '<img src="' + obj.Data.Icon + '" style="width:32px; height:32px;">' + obj.Data.Name + '<br><br>' + obj.Data.Message]
+            return [new Date(obj.Time.Date.Year, obj.Time.Date.Month - 1, obj.Time.Date.Day), , '<img src="' + obj.Data.Icon + '" style="width:32px; height:32px;">' + obj.Data.Name + '<br><br>' + obj.Data.Message + '<br>' + '<a href='+obj.Data.Url+'><img src="/static/icons/Edit-50.png" style="width:28px;height:28px;margin-right:5px;"></a>' + '<a href='+obj.Data.Url+'><img src="/static/icons/Link-50.png" style="width:28px;height:28px;margin-left: 5px;;"></a>'];
         } else {
-            return [new Date(obj.Time.Date.Year, obj.Time.Date.Month - 1, obj.Time.Date.Day), , obj.Data.Name + '<br><br>' + obj.Data.Message];
+            return [new Date(obj.Time.Date.Year, obj.Time.Date.Month - 1, obj.Time.Date.Day), , obj.Data.Name + '<br><br>' + obj.Data.Message + '<br>' + '<a href='+obj.Data.Url+'><img src="/static/icons/Edit-50.png" style="width:28px;height:28px;margin-right:5px;"></a>' + '<a href='+obj.Data.Url+'><img src="/static/icons/Link-50.png" style="width:28px;height:28px;margin-left: 5px;;"></a>'];
         }
     }
-
 }
 
 function populateTimeline(data, obj) {
