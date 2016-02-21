@@ -3,4 +3,5 @@ $(document).on('ready', function() {
         maxFileCount: 50,
         allowedFileTypes: ["image"]
     });
+
 });
