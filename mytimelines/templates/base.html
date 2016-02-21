@@ -12,8 +12,6 @@
 
 </head>
 <body>
-{% block content %}
-{% endblock %}
     <script src="/static/js/vendor/jquery.min.js"></script>
     <script src="/static/js/flat-ui.js"></script>
     <script src="/static/js/canvas-to-blob.min.js"></script>
@@ -23,5 +21,7 @@
     <script src="/static/customJS/timelinecall.js"></script>
     <script src="http://www.google.com/jsapi"></script>
     <script>google.load("visualization", "1");</script>
+    {% block content %}
+    {% endblock %}
 </body>
 </html>
