@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <title>Timeline demo</title>
+
+    <style>
+      body {font: 10pt arial;}
+    </style>
+
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="..\mytimelines\static\timeline\timeline.js"></script>
+    <link rel="stylesheet" type="text/css" href="..\mytimelines\static\timeline\timeline.css">
+
+    <script type="text/javascript">
+      google.load("visualization", "1");
+
+      google.setOnLoadCallback(function(){
+        drawVisualization(test)
+      });
+
+      var test = '{ "Timeline":[ {"Event":{ "Time":{ "Date":{ "Day": 23, "Month": 7, "Year": 2012 }, "TimeOfDay":{ "Hour": 16, "Minutes": 30, "Seconds": 40 } }, "Data":{ "Message": "Today was a good damn day", "Name": "My Birthday", "Icon": "76924374uh2l3r7hq23bnr4pd9q78e38g2w3jinr2p" } }}, {"Event":{ "Time":{ "Date":{ "Day": 2, "Month": 9, "Year": 2013 } }, "Data":{ "Message": "Today was a shit day", "Name": "Gym Day", "Icon": "76924374uh2l3r7hq23bnr4pd9q78e38g2w3jinr2p" } }}, {"Event":{ "Time":{ "Date":{ "Day": 2, "Month": 9, "Year": 2016 } }, "Data":{ "Message": "Today was a shit day", "Name": "Gym Day", "Icon": "76924374uh2l3r7hq23bnr4pd9q78e38g2w3jinr2p" } }} ] }'
+
+      // sets up the options for the
+      // http://almende.github.io/chap-links-library/js/timeline/doc/
+      function initOptions(start, end){
+        var options = {
+            "width": "90%",
+            "height": "30%",
+            "style": "box",
+            "min": new Date(start.Year-1, start.Month-1, start.Day),
+            "max": new Date(end.Year+1, end.Month-1, end.Day)
+        };
+        return options
+      }
+
+      // init the data set
+      function initDataSet(){
+        var data = new google.visualization.DataTable();
+        data.addColumn('datetime', 'start');
+        data.addColumn('datetime', 'end');
+        data.addColumn('string', 'content');
+
+        return data
+      }
+
+      // draw the thing!
+      function drawVisualization(json) {
+        object = JSON.parse(json)
+
+        data = initDataSet();
+        options = initOptions(object.Timeline[0].Event.Time.Date, object.Timeline[object.Timeline.length-1].Event.Time.Date);
+
+        data = populateTimeline(data, object);
+
+        var timeline = new links.Timeline(document.getElementById('mytimeline'));
+        timeline.draw(data, options)
+      }
+
+      function populateTimeline(data, obj){
+        for(i=0;i<obj.Timeline.length;i++){
+          // add when we are OK with adding img-s
+
+          //data.addRow([new Date(obj.Timeline[i].Event.Time.Date.Year, obj.Timeline[i].Event.Time.Date.Month-1, obj.Timeline[i].Event.Time.Date.Day), , '<img src="'+obj.Timeline[i].Event.Data.Icon+'" style="width:32px; height:32px;">'+obj.Timeline[i].Event.Data.Name + '<br><br>' + obj.Timeline[i].Event.Data.Message]);
+
+          data.addRow([new Date(obj.Timeline[i].Event.Time.Date.Year, obj.Timeline[i].Event.Time.Date.Month-1, obj.Timeline[i].Event.Time.Date.Day), , obj.Timeline[i].Event.Data.Name + '<br><br>' + obj.Timeline[i].Event.Data.Message]);
+        }
+        return data
+      }
+
+    </script>
+  </head>
+
+  <body>
+    <div id="mytimeline"></div>
+  </body>
+</html>
