@@ -26,12 +26,10 @@ function initDataSet() {
 }
 
 function makeAJAXcall(){
-    console.log(document.URL);
     var id = document.URL.split("/")[4];
     $.get("/timelines/"+id+"/", function(data){
         console.log(data);
         drawTimeline(data, 'timeline');
-        alert(data)
     });
 }
 
