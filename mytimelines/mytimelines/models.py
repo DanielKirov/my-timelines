@@ -26,9 +26,9 @@ class Timeline(models.Model):
         return reverse('timeline-detail', kwargs={"slug": self.pk, })
 
 class Event(models.Model):
+
     timeline = models.ForeignKey(Timeline, related_name="events")
     title = models.CharField(max_length=200, null=False, blank=False)
-    description = models.CharField(max_length=500, default="")
     date = models.DateField()
     main_image = models.ImageField(upload_to="events")
 
