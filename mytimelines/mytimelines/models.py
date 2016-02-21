@@ -24,6 +24,17 @@ class Timeline(models.Model):
     def get_absolute_url(self):
         return reverse('timeline-detail', kwargs={"slug": self.pk, })
 
+    def get_time_since_last_event(self):
+        try:
+            last_event_date = self.events.order_by('date')[0].date
+        except:
+            return ''
+
+        current_date = datetime.datetime.now().date()
+        diff = current_date - last_event_date
+        return diff.days
+
+
 class Event(models.Model):
 
     timeline = models.ForeignKey(Timeline, related_name="events")
