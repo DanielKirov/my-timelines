@@ -101,7 +101,8 @@ class Event(models.Model):
         data_data = dict(
             Message=self.description,
             Name=self.title,
-            Icon=self.main_image_binary
+            Icon=self.main_image_binary,
+            Url=self.get_absolute_url(),
         )
 
         event_data['Data'] = data_data
