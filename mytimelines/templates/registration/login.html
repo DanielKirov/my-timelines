@@ -5,7 +5,11 @@
 
 <div class="container">
     <div class="row container">
-       <div class="row container">
+        <div class="row container" id="logo">
+             {%  load static %}
+            <img id="logo-img" src="{% static "img/logo.jpeg"%}" alt="Mountain View"">
+        </div>
+        <div class="row container">
         <div class="col-sm-12">
             <div class="form_container" style="width:25vw; margin:0 auto;">
              <form method="post" action="." id="login-form">
