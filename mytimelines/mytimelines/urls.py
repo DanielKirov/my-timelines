@@ -23,15 +23,14 @@ urlpatterns = [
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
             'document_root': settings.MEDIA_ROOT,
         }),
-    url(r'^test/addTimeline/', addTimeline, name="addTimeline"),
-    url(r'^test/', testview, name="test"),
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^test/addTimeline/$', addTimeline, name="addTimeline"),
+    url(r'^test/$', testview, name="test"),
+    url(r'^admin/$', include(admin.site.urls)),
+    url(r'^accounts/$', include('registration.backends.simple.urls')),
     url(r'^timelines/$', login_required(TimelineListView.as_view()), name="timeline-list"),
-    url(r'^timelines/(?P<slug>[\w-]+)/$', timelineview,
-                           name="timeline-detail"),
-    url(r'^timelines/(?P<slug>[\w-]+)/(?P<event_slug>[\w-]+)/$', eventview,
-                           name="event-detail"),
+    url(r'^timelines/(?P<slug>[\w-]+)/$', timelineview, name="timeline-detail"),
+    url(r'^timelines/(?P<slug>[\w-]+)/(?P<event_slug>[\w-]+)/$', eventview,name="event-detail"),
+    url(r'^addEvent/$', addEvent, name="addEvent"),
     url(r'^', homeview, name="home")
 ]
 

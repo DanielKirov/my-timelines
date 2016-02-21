@@ -1,9 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.views.generic.list import ListView
 
-from .models import Timeline, Event
+from .models import *
 
 class TimelineListView(ListView):
 
@@ -56,13 +56,18 @@ def addTimeline(request):
     return render(request, 'test.html')
 
 def addEvent(request):
-    import pdb; pdb.set_trace()
+    #import pdb; pdb.set_trace()
+    timeline = long(request.POST['id'])
     if request.method == "POST":
-        timeline = models.ForeignKey(Timeline, related_name="events")
-        title = models.CharField(max_length=200, null=False, blank=False)
-        description = models.CharField(max_length=500, default="")
-        date = models.DateField()
-        main_image = models.ImageField(upload_to="events")
-        return render(request, 'test.html')
-    else:
-        return render()
+        title = request.POST['title']
+        description = request.POST['description']
+        date = request.POST['date']
+        pic = None
+        if "pics" in request.FILES:
+            pic = request.FILES['pics'][0]
+        event = Event.objects.create(title=title,description=description,date=date,main_image=pic)
+        for pic in request.FILES['pics']:
+            EventPicture.objects.create(event=event,image=pic)
+
+
+    return redirect(timeline.get_absolute_url())
