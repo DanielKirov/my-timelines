@@ -17,3 +17,21 @@
 #logo-img {
     margin: 0 auto;
 }
+
+.navbar-brand {
+  height: 90px;
+}
+
+.nav >li >a {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.navbar-toggle {
+  padding: 10px;
+  margin: 25px 15px 25px 0;
+}
+
+#addButton {
+    height: 85px;
+    margin-top: 0px;
+}

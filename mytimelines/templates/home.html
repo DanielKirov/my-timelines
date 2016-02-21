@@ -1,8 +1,58 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>HOME PAGE</h2>
-    {%  load static %}
-    <img src="{% static "img/riphunter.jpg"%}" alt="Mountain View"">
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                <span class="sr-only">Toggle navigation</span>
+            </button>
+            <a class="navbar-brand" href="#">
+                {%  load static %}
+            <img id="logo-small-img" src="{% static "img/logo-small.png"%}" alt="Mountain View"">
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse-01">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#fakelink">My Timelines</a></li>
+            </ul>
+            <button id="addButton" class="btn btn-default navbar-btn navbar-right" type="button" data-toggle="modal" data-target="#addTimeline"><span class="fui-plus"></span>  Add Timeline</button>
+        </div><!-- /.navbar-collapse -->
+    </nav><!-- /navbar -->
+
     <div id="test"></div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="addTimeline">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Add timeline</h4>
+                </div>
+                <div class="modal-body">
+                    <form role="form" method="POST" action="/addTimeline/" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="name">Name: </label>
+                            <input name="name" type="text" class="form-control"
+                                   id="name" placeholder="Timeline name"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="color">Color: </label>
+                            <input name="color" type="text" class="form-control"
+                                   id="color" placeholder="Choose Color"/>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Select File</label>
+                            <input name="pic" id="input-1a" type="file" class="file">
+                        </div>
+                        <input type="submit" class="btn btn-lg btn-primary" value="Submit">
+                    </form>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 {% endblock %}
