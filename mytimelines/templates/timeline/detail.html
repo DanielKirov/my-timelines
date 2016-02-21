@@ -4,8 +4,14 @@
     <h1>{{ timeline.title }}</h1>
     <img src="{{ timeline.icon.url }}"/>
 
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addEvent"> Add Event </button>
+    <script type="text/javascript">
+        $.get("/timelines/1/", function(data){
+            drawVisualization(data, 'timeline')
+        });
+    </script>
 
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addEvent"> Add Event </button>
+    <div id="timeline"></div>
     <div class="modal fade" tabindex="-1" role="dialog" id="addEvent">
         <div class="modal-dialog">
             <div class="modal-content">
